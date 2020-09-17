@@ -1,2 +1,3 @@
 listSum:: [(Integer)] -> Integer
-listSum listInteger = sum [x | x <- listInteger]
+listSum [] = 0
+listSum (x:xs) = x + (listSum xs)

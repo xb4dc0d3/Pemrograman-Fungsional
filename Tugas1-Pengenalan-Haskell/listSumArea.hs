@@ -3,4 +3,5 @@ circleArea r = r*pi
 
 
 listSumArea:: [Double] -> Double
-listSumArea listOfCircleArea = sum [area | area <- listOfCircleArea]
+listSumArea [] = 0
+listSumArea (x:xs) = x + listSumArea(xs)
