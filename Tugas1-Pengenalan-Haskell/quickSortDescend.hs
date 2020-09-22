@@ -1,6 +1,4 @@
 quickSortDescend:: [(Integer)] -> [(Integer)]
-
--- //TODO: Implement QuickSort Descending and Compare Slowest to Fastest --
 quickSortDescend listOfInteger = 
     if listOfInteger == []
         then []
