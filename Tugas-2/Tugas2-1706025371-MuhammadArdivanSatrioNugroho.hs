@@ -7,13 +7,13 @@ sumOfSquares :: [(Integer)] -> Integer
 sumOfSquares [] = 0
 sumOfSquares (x:xs) = x*x + sumOfSquares(xs)
 
---- Fungsi triangular No.2 ---
+--- Fungsi triangular No.2 , asumsi hanya bilangan bulat positif ---
 triangular :: Integer -> Integer
 triangular num
     | num == 0 = 0
     | otherwise = num + triangular(num-1)
 
---- Fungsi power scratch No.3, hanya bilangan bulat positif ---
+--- Fungsi power scratch No.3, asumsi hanya bilangan bulat positif ---
 power :: Integer -> Integer -> Integer
 power num pow 
         | pow == 0 = 1
