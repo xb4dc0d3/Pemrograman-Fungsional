@@ -6,13 +6,19 @@ myUncurry :: (a->b->c)-> (a,b)->c
 myUncurry f (x,y) = f x y
 
 --- Soal no,2 ---
-fib_helper :: Integer -> Integer
-fib_helper num 
-        | num == 0 = 0
-        | num == 1 = 1
-        | otherwise = fib_helper(num-1) + fib_helper(num-2)
-fibonacci :: Integer -> [(Integer)]
-fibonacci num = map fib_helper [0..num]
+-- fib_helper :: Integer -> Integer
+-- fib_helper num 
+--         | num == 0 = 0
+--         | num == 1 = 1
+--         | otherwise = fib_helper(num-1) + fib_helper(num-2)
+-- fibonacci :: Integer -> [(Integer)]
+-- fibonacci num = map fib_helper [0..num]
+fib_helper :: [Integer]
+fib_helper = 0 : next
+    where next = 1 : zipWith (+) fib_helper next
+
+fibonacci :: Int -> [Integer]
+fibonacci = flip take fib_helper
 
 --- Soal no.3 ---
 multiply_helper :: Integer -> Integer -> Integer
@@ -32,7 +38,10 @@ sumEven :: [(Integer)] -> Integer
 sumEven listInteger = sum (filter even listInteger)
 
 --- Soal no.5 ---
-invest ::Double->Double->Double->Double
-invest nominal rate duration 
+eq_invest  ::Double->Double->Double->Double
+eq_invest nominal rate duration 
                         | duration == 0 = nominal
-                        | otherwise = nominal + invest (nominal * (1+rate/100)) rate (duration-1)
+                        | otherwise = nominal + eq_invest (nominal * (1+rate/100)) rate (duration-1)
+
+invest :: Double -> Double -> Double -> Double
+invest nom rate dur = (eq_invest nom rate dur) - nom
