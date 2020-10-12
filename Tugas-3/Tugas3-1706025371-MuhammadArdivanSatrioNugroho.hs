@@ -1,5 +1,3 @@
-import Text.Printf (printf)
-
 --- Soal no.1 ---
 
 myCurry :: ((a,b)->c)->(a->b->c)
