@@ -1,15 +1,7 @@
 import Data.Char as Char
 
 --- Soal nomor 1 ---
---- using fold ---
-length_by_foldl :: [a] -> Integer
-length_by_foldl xs = foldl (\acc _ -> acc + 1) 0 xs
-
--- length_by_foldr ::  [a] -> Integer
---- const x is a unary function which evaluates to x for all inputs.---
--- length_by_foldr xs = foldr (const (1+)) 0 xs
-
---- using map ---
+--- using fold and map ---
 length' :: [a] -> Integer
 length' xs = foldr (+) 0 (map (\_ -> 1) xs)
 
@@ -29,7 +21,7 @@ sumOfSquares_a n = foldl (+) 0 (map (\x-> x^2) [1.. n])
 sumOfSquares_b :: Integer -> Integer
 sumOfSquares_b n = foldl (+) 0 ([x^2 | x <- [1..n]])
 
---- c. Perbedaan dari kedua pendekatan ---
+--- c. Perbedaan dari kedua pendekatan (PDF) ---
 
 
 --- Soal nomor 4 ---
@@ -39,7 +31,7 @@ multipleOf5 list = length' (map (\x -> x) (filter (\x -> x `mod` 5 == 0) list))
 
 
 --- Soal nomor 5 ---
-total func n = sum (map func [1..n])
+total func n = sum (map func [0..n])
 
 --- Soal nomor 6 ---
 reverse' :: Foldable t => t a -> [a]
@@ -55,4 +47,15 @@ pythaTriple = [(x,y,z) | z<- [5..], y<- [z, (z-1) .. 1], x<- [y, (y-1)..1], x*x 
 --- Soal nomor 9 (PDF) ---
 
 --- Soal nomor 10 (NOT SOLVED) ---
-noUpperAndIndent text =  filter Char.isLower text
+printableChar :: Char -> Bool
+printableChar text = text `elem` ['a' .. 'z']
+
+notUpper :: Char -> Bool
+notUpper text = not (isUpper text)
+
+noUpperAndIndent :: [Char] -> [Char]
+noUpperAndIndent text =  filter printableChar (filter notUpper text)
+
+
+primes = sieve' [2..]
+sieve' (p:xs) = p : sieve' [x | x<-xs, x `mod` p > 0]
