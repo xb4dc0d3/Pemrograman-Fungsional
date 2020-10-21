@@ -9,8 +9,8 @@ length' xs = foldr (+) 0 (map (\_ -> 1) xs)
 -- greaterOne n = n > 1
 -- addOne n = n + 1
 -- addUp  ns  =  filter  greaterOne  (map  addOne  ns)
-addUp' :: (Num b, Ord b) => [b] -> [b]
-addUp' ns =  map (\x -> x+1) ((filter (\x -> x>0) ns))
+addUp :: (Num b, Ord b) => [b] -> [b]
+addUp ns =  map (\x -> x+1) ((filter (\x -> x>0) ns))
 
 --- Soal nomor 3 ---
 --- a. Map and Fold ---
@@ -55,7 +55,3 @@ notUpper text = not (isUpper text)
 
 noUpperAndIndent :: [Char] -> [Char]
 noUpperAndIndent text =  filter printableChar (filter notUpper text)
-
-
-primes = sieve' [2..]
-sieve' (p:xs) = p : sieve' [x | x<-xs, x `mod` p > 0]
