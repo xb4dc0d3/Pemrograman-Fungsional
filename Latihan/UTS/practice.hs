@@ -7,6 +7,10 @@ noOfSol a b c
     | (b^2-4*a*c) < 0 = "No Solutions"
     | otherwise = "1 Solutions"
 
+
+--- No 2 ---
+--- Cek satu-satu pake >:t <ekspresi ---
+
 --- No 3 membuat menjadi 3 pasang ---
 thrice x = [x, x, x]
 sums (x : y : ys) = x : sums (x + y : ys)
@@ -22,7 +26,9 @@ fac n | n < 0 = -1
 
 
 --- No 2 ---
-
+pow x n |(n==1) = x
+        |even n = (pow x ( div n 2))*(pow x ( div n 2)) 
+        |odd n  = x * (pow x (n-1))
 
 --- No 3 ---
 lastElement lists = head (reverse lists)
@@ -31,9 +37,7 @@ lastElement lists = head (reverse lists)
 beforeLastElement lists = (reverse lists) !! 1
 
 --- No 5 define operator (!!) or getIndex ---
-
 getIndex lists idx = head([val | (i, val) <- zip [0..length lists] lists, i == idx])
-
 
 --- No 6 define palindrome ---
 palindrome lists = lists == reverse lists
@@ -66,11 +70,9 @@ removeAll x (y:ys)
     | elem y x = removeAll x ys
     | otherwise = y:removeAll x ys
 
-
 --- No 14 transpose matrix ---
 transpose ([]:_) = []
 transpose lists = (map head lists) : transpose (map tail lists)
-
 
 --- No 15 ---
 split' :: Eq a => Int -> [a] -> [[a]]
@@ -82,7 +84,6 @@ split' num lists
 gaps (x:xs)
     | (length (x:xs)) == 0 || (x:xs) == [] = []
     | otherwise = []
-
 
 --- Lecture 4 - Higher-order functions ---
 

@@ -1,0 +1,61 @@
+=================================
+( Recursion )
+=================================
+# Pascal Triangle
+fact 0 = 1
+fact n = n * fact (n-1)
+
+combine n r= (fact n) `div` ((fact r) * fact (n-r))
+pascal k = [[combine n r | r<-[0..n]] | n<-[0..k-1]]
+getRow (x:xs) = (show x) ++ " " ++ (getRow xs)
+getRow [] = ""
+
+main = do
+    x <- readLn :: IO Int
+    mapM_ putStrLn [getRow row | row <- (pascal x)]
+
+
+
+# String Mingling
+mingle a b = concat [[x, y] | (x, y) <- zip a b]
+
+main = do
+  a <- getLine
+  b <- getLine
+  putStrLn $ mingle a b
+
+
+# String Compression
+comp []     _ = []
+comp [c]    1 = [c]
+comp [c]    n = [c] ++ show n
+comp (x:xs) n | x == head xs = comp xs (n+1)
+              | n == 1       = [x] ++ comp xs 1
+              | otherwise    = [x] ++ show n ++ comp xs 1
+main = getLine >>= putStrLn . (flip comp 1)
+
+# String Reductions
+--- Helper string kosong append, jika elem sesuai dengan char sebelumnya ---
+reducs s "" = reverse s
+reducs u (x:xs) 
+  | x `elem` u = reducs u xs
+  | otherwise = reducs (x:u) xs 
+
+main = do
+  str <- getLine
+  putStrLn (reducs "" str)
+
+# GCD
+gcd' :: Integral a => a -> a -> a
+gcd' n m
+      | m == 0     = abs n
+      | otherwise  = gcd' m (n `mod` m)
+
+-- This part is related to the Input/Output and can be used as it is
+-- Do not modify it
+main = do
+  input <- getLine
+  print . uncurry gcd' . listToTuple . convertToInt . words $ input
+ where
+  listToTuple (x:xs:_) = (x,xs)
+  convertToInt = map (read :: String -> Int)

@@ -1,0 +1,10 @@
+# Remove Duplicates
+--- Helper string kosong append, jika elem sesuai dengan char sebelumnya ---
+reducs s "" = reverse s
+reducs u (x:xs)
+  | x `elem` u = reducs u xs
+  | otherwise = reducs (x:u) xs
+
+main = do
+  str <- getLine
+  putStrLn (reducs "" str)

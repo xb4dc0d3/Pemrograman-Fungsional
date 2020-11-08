@@ -1,0 +1,24 @@
+=================================
+(Lambda Calculus Reductions)
+=================================
+# Lambda Calculus Reductions #1
+((λx.(x y))(λz.z))
+
+= (λx.(x y))(λz.z)
+= ((λz.z)y)
+= (λz.z)y
+= y
+
+# Lambda Calculus Reductions #2
+((λx.((λy.(x y))x))(λz.w))
+((λy.((λz.w) y))(λz.w))
+((λz.w) (λz.w))
+(λz.w)
+w
+ 
+# Lambda Calculus Reduction #3 (Not solved) -> test case "CANT REDUCE"
+
+# Lambda Calculus Reduction #4
+(λx.(f (x x)))(λx.(f (x x)))
+=(f (x x))[x:=(λx.(f (x x)))]
+=(f ((λx.(f (x x)))(λx.(f (x x)))))
